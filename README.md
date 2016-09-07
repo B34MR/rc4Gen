@@ -6,9 +6,9 @@
 
 Installation:
 ***
-git clone 
-cd rc4Gen
-python rc4Gen.py
+    git clone 
+    cd rc4Gen
+    python rc4Gen.py
 
 Usage(CLI):
 ***
