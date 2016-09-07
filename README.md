@@ -3,19 +3,19 @@
     Generates a MSF Reverse TCP RC4 payload encoded in Powershell.
     Additionally, it will copy the payload to your clipboard and automagically launch the MSF listener.
     rc4Gen.py supports both command-line parameters and a wizard with interactive menu driven options.
-
-Installation:
 ***
+Installation:
+
     git clone 
     cd rc4Gen
     python rc4Gen.py
-
+***
 Usage(CLI):
-***
-        ...
 
-Usage(Wizard):
+        ...
 ***
+Usage(Wizard):
+
     External IP: 100.255.255.255
     Internal IP: 10.37.242.7
 
@@ -75,8 +75,8 @@ Usage(Wizard):
     [*] Starting the payload handler...
     msf exploit(handler) > exit
         ...
-
-To Do:
 ***
+To Do:
+
     Add try/expect statment for the msfpro/msvenom alternate path
     Create help function.
