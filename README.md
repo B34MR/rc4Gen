@@ -5,9 +5,10 @@
     rc4Gen.py supports both command-line parameters and a wizard with interactive menu driven options.
 
 Usage(CLI):
+        ...
 
 Usage(Wizard):
-
+        ...
 To Do:
 ***
     Add try/expect statment for the msfpro/msvenom alternate path
