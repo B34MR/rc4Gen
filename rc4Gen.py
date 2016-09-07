@@ -28,7 +28,7 @@ def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
 		rc4Payload = f1.read()
 
 	on = set(['on','yes', 'ye', ''])
-	off = set(['off','no'])
+	off = set(['off','of', 'no'])
 	if verboseChoice in on:
 		print('\nPAYLOAD: '+msfPayload)
 		print('LHOST: '+lhost)
@@ -58,7 +58,7 @@ def autorunscript():
 def listener(msfPayload,lhost,lport,rc4Password, msflistenerChoice): 
 	#Creates resource file(with autorunscripts builtin) and launches listener.
 	on = set(['on','yes', 'ye', ''])
-	off = set(['off','no'])
+	off = set(['off','of','no'])
 	if msflistenerChoice in on:
 		with open(filerc4listener, 'w') as f:
 			f.write("use multi/handler"+"\n"+\
