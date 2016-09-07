@@ -13,7 +13,9 @@ Installation:
 ***
 Default Values:
 
-    If a parameter is no defined it's default value will be choosen.
+    If a parameter is not defined it's default value will be choosen.
+    Default values listed below.
+    
     lport = '443'
     rc4Password = 'rc4M4g1c'
     verboseChoice = 'off'
