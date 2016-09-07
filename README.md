@@ -11,7 +11,14 @@ Installation:
     python rc4Gen.py
 
 ***
-Default Values:    
+Default Values:
+    If a parameter is no defined it's default value will be choosen.
+    lhost= ''
+    lport = '443'
+    rc4Password = 'rc4M4g1c'
+    msfPayload = 'reverse_tcp_rc4'
+    verboseChoice = 'off'
+    msflistenerChoice = 'on'
     
 ***
 Usage(CLI):
