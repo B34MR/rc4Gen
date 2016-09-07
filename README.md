@@ -9,6 +9,10 @@ Installation:
     git clone 
     cd rc4Gen
     python rc4Gen.py
+
+***
+Default Values:    
+    
 ***
 Usage(CLI):
     python rc4Gen.py --lhost=10.37.242.7 --lport=445 --verbose=on -e on
