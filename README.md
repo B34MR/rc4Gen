@@ -15,9 +15,8 @@ Default Values:
     
 ***
 Usage(CLI):
+
     python rc4Gen.py --lhost=10.37.242.7 --lport=445 --verbose=on -e on
-    
-    
 ***
 Usage(Wizard):
 
