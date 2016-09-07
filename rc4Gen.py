@@ -43,6 +43,7 @@ def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
 		print('LHOST: '+lhost)
 		print('LPORT: '+lport)
 		print('RC4PASSWORD: '+rc4Password)
+		print('\n')
 	else:
 		sys.stdout.write("Please respond with 'ON' or 'OFF'")
 
@@ -115,8 +116,8 @@ def main(argv):
 
     	print('TIP: Listener [ON] will automagically launch a MSF listener.')
     	msfListener = raw_input('listener[ON]:') or 'ON'
-    	msfListenerChoice = msfListener.lower()
-    	print('ENTERED: "%s"' % msfListenerChoice.upper() + '\n')
+    	msflistenerChoice = msfListener.lower()
+    	print('ENTERED: "%s"' % msflistenerChoice.upper() + '\n')
     	listener(msfPayload,lhost,lport,rc4Password,msflistenerChoice)
 
     else:
