@@ -16,8 +16,6 @@ Usage(CLI):
 
 Usage(Wizard):
 ***
-Example:
-    
     External IP: 100.255.255.255
     Internal IP: 10.37.242.7
 
