@@ -90,6 +90,5 @@ Usage(Wizard):
 ***
 To Do:
 
-    Add try/expect statment for the msfpro/msvenom alternate path
     Create help function.
     Complete README.md
