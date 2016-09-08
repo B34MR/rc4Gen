@@ -103,3 +103,4 @@ To Do:
 
     Create help function.
     Complete README.md
+    autorun script ON/off feature (add)
