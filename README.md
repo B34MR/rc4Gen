@@ -18,13 +18,13 @@ Default Values:
     
     lport = '443'
     rc4Password = 'rc4M4g1c'
-    verboseChoice = 'off'
-    msflistenerChoice = 'on'
+    verbose = 'off'
+    listener = 'on'
     
 ***
 Usage(CLI):
 
-    python rc4Gen.py --lhost=10.37.242.7 --lport=445 --verbose=on -e on
+    python rc4Gen.py --lhost=192.168.1.18 --lport=447 --verbose=on --listener=off
 ***
 Usage(Wizard):
 
