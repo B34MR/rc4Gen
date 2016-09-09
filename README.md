@@ -55,6 +55,7 @@ Usage(CLI):
 	 --listener[ON] is default, this will automatically launch the corresponding MSF Multi/Handler.
 
 	 --listener[OFF] is not default, this will NOT launch MSF multi/handler.
+     
      Misc:
 
 	 --help <help>		Prints this help menu.
@@ -129,6 +130,7 @@ Autorun Script:
     spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
  
     A file called 'autorun_commands.rc' is created with the following commands:
+    
     migrate -N spoolsv.exe
     load kiwi
     sysinfo
