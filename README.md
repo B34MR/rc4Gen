@@ -1,4 +1,17 @@
 # rc4Gen
+                __ __    ____                      
+               /\ \\ \  /\  _`\                    
+     _ __   ___\ \ \\ \ \ \ \L\_\     __    ___    
+    /\`'__\/'___\ \ \\ \_\ \ \L_L   /'__`\/' _ `\  
+    \ \ \//\ \__/\ \__ ,__\ \ \/, \/\  __//\ \/\ \ 
+     \ \_\\ \____\\/_/\_\_/\ \____/\ \____\ \_\ \_\
+      \/_/ \/____/   \/_/   \/___/  \/____/\/_/\/_/
+
+
+    rc4Gen.py v1.0
+    Description: Generates a MSF Reverse TCP RC4 payload encoded in Powershell to the clipboard.
+    Created by: Nick Sanzotta/@beamr
+
     This is a Unicorn like script that...
     Generates a MSF Reverse TCP RC4 payload encoded in Powershell.
     Additionally, it will copy the payload to your clipboard and automagically launch the MSF listener.
