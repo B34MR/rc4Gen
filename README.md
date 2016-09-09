@@ -10,9 +10,10 @@
 
     rc4Gen.py v1.0
     Description: Generates a MSF Reverse TCP RC4 payload encoded in Powershell to the clipboard.
+    Automatically launches the corresponding MSF Multi/Handler.
+    The Multi/Handler listener is weaponized to automatically migrate into the spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
+    rc4Gen.py supports both command-line parameters and a Wizard driven menu.
     Created by: Nick Sanzotta/@beamr
-    Additionally, it will copy the payload to your clipboard and automagically launch the MSF listener.
-    rc4Gen.py supports both command-line parameters and a wizard with interactive menu driven options.
 ***
 Installation:
 
