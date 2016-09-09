@@ -17,9 +17,9 @@
 ***
 Installation:
 
-    git clone 
+    git clone https://github.com/NickSanzotta/rc4Gen.git
     cd rc4Gen
-    python rc4Gen.py
+    python rc4Gen.py --help
 
 ***
 Default Values:
@@ -55,6 +55,10 @@ Usage(CLI):
 	 --listener[ON] is default, this will automatically launch the corresponding MSF Multi/Handler.
 
 	 --listener[OFF] is not default, this will NOT launch MSF multi/handler.
+     Misc:
+
+	 --help <help>		Prints this help menu.
+
 
 ***
 Usage(Wizard):
@@ -136,6 +140,4 @@ Autorun Script:
 ***
 To Do:
 
-    Create help function.
-    Complete README.md
     autorun script ON/off feature (add)
