@@ -8,7 +8,7 @@
       \/_/ \/____/   \/_/   \/___/  \/____/\/_/\/_/
 
 
-    rc4Gen.py v1.0
+    rc4Gen.py v1.10122016
     Description: Generates a MSF Reverse TCP RC4 payload encoded in Powershell to the clipboard.
     Automatically launches the corresponding MSF Multi/Handler.
     The Multi/Handler listener is weaponized to automatically migrate into the spoolsv.exe process, load Kiwi, run sysinfo, hashdump, creds_all and lsa_dump.
